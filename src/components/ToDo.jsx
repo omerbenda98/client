@@ -21,7 +21,7 @@ function ToDo({ username }) {
       `${process.env.REACT_APP_API_URL}/api/todos`,
       {
         text: newTodo,
-        completed: false, // Ensure new todos are marked as not completed initially
+        completed: false,
         username,
       }
     );
@@ -33,7 +33,7 @@ function ToDo({ username }) {
     const response = await axios.put(
       `${process.env.REACT_APP_API_URL}/api/todos/${todoId}`,
       {
-        completed: true, // This assumes the endpoint automatically sets completed to true
+        completed: true,
       }
     );
     const updatedTodos = todos.map((todo) =>
