@@ -8,7 +8,7 @@ function ToDo({ username }) {
   useEffect(() => {
     const fetchTodos = async () => {
       const response = await axios.get(
-        `http://localhost:3001/api/todos?username=${username}`
+        `${process.env.REACT_APP_API_URL}/api/todos?username=${username}`
       );
       setTodos(response.data);
     };
@@ -17,18 +17,21 @@ function ToDo({ username }) {
 
   const addTodo = async (event) => {
     event.preventDefault();
-    const response = await axios.post("http://localhost:3001/api/todos", {
-      text: newTodo,
-      completed: false, // Ensure new todos are marked as not completed initially
-      username,
-    });
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/todos`,
+      {
+        text: newTodo,
+        completed: false, // Ensure new todos are marked as not completed initially
+        username,
+      }
+    );
     setTodos([...todos, response.data]);
     setNewTodo("");
   };
 
   const toggleTodoCompletion = async (todoId) => {
     const response = await axios.put(
-      `http://localhost:3001/api/todos/${todoId}`,
+      `${process.env.REACT_APP_API_URL}/api/todos/${todoId}`,
       {
         completed: true, // This assumes the endpoint automatically sets completed to true
       }
