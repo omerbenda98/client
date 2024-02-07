@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function ToDo({ username }) {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -42,6 +44,10 @@ function ToDo({ username }) {
     setTodos(updatedTodos);
   };
 
+  const handleBackClick = () => {
+    navigate(`${process.env.REACT_APP_API_URL}`);
+  };
+
   return (
     <div className="todoContainer">
       <h2 className="todoHeader">{username}'s To-Do List</h2>
@@ -69,6 +75,9 @@ function ToDo({ username }) {
           </li>
         ))}
       </ul>
+      <button className="todoButton" onClick={handleBackClick}>
+        Go Back
+      </button>
     </div>
   );
 }
