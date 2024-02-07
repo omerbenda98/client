@@ -45,7 +45,7 @@ function ToDo({ username }) {
   };
 
   const handleBackClick = () => {
-    navigate(`${process.env.REACT_APP_API_URL}`);
+    navigate(`/`);
   };
 
   return (
