@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function ToDo({ username }) {
+function ToDo({ username, onBack }) {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
   const navigate = useNavigate();
@@ -45,6 +45,7 @@ function ToDo({ username }) {
   };
 
   const handleBackClick = () => {
+    onBack();
     navigate(`/`);
   };
 

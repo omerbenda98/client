@@ -15,6 +15,9 @@ function App() {
   const handleLogin = (user) => {
     setUsername(user);
   };
+  const resetUsername = () => {
+    setUsername("");
+  };
 
   return (
     <Router>
@@ -33,7 +36,7 @@ function App() {
           path="/todo"
           element={
             username ? (
-              <ToDo username={username} />
+              <ToDo username={username} onBack={resetUsername} />
             ) : (
               <Navigate replace to="/" />
             )
